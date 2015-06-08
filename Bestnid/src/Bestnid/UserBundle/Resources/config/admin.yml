@@ -1,0 +1,11 @@
+services:
+    sonata.admin.user:
+        class: Bestnid\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidad", label: "Usuario" }
+        arguments:
+            - ~
+            - Bestnid\UserBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [UserBundle]]

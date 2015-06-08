@@ -1,0 +1,59 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/main/css/bootstrap.min.css') }}"
+          rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
+
+{% block rowCategoria %}
+    {% include "::menu_perfil.html.twig" %}
+{% endblock %}
+
+
+{% block body  %}
+    <ul class="nav nav-tabs">
+        <li class="active"></li>
+        <li><a href="{{ path ("mis_remates") }}">Activas</a></li>
+        <li><a href="#">Inactivas</a></li>
+    </ul>
+        <div class="container">
+        <table class="table table-nonfluid" style="font-size:small;width: 800px;" >
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Descripcion</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Activo</th>
+                <th>Ofertas</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for remate in remates %}
+            <tr>
+                <td><img src=/uploads/images/{{ remate.foto }} alt="{{ remate.foto }}" class="img" style="min-height:40px;height:40px;"/> </td>
+                <td>{{ remate.nombre }}</td>
+                <td>{{ remate.categoria }}</td>
+                <td>{{ remate.descripcion }}</td>
+                <td>{{ remate.fIni |date('Y-m-d')  }}</td>
+                <td>{{ remate.fFin |date('Y-m-d') }}</td>
+                <td>{% if remate.activo %}
+                        <span class="glyphicon glyphicon-ok"></span></p>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span></p>
+                    {% endif %}
+                </td>
+                <td> <span class="badge">{{ remate.ofertas | length }}</span></td>
+                <td><p><a href="{{ path('mis_ofertas', { 'categoria': remate.categoria, 'producto_id': remate.id }) }}" class="btn btn-primary">Ver artículo</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}
+

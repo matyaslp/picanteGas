@@ -1,0 +1,90 @@
+main:
+    resource: "@MainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+prueba:
+    pattern:  /prueba/
+    defaults:  { _controller: MainBundle:Sitio:prueba }
+
+pagina_ayuda:
+    pattern:  /sitio/{pagina}
+    defaults:  { _controller: MainBundle:Sitio:estatica }	
+
+portada:
+    pattern:  /
+    defaults:  {_controller: MainBundle:Default:portada }
+
+categorias:
+    pattern:  /categorias/{categoria}
+    defaults:  {_controller: MainBundle:Default:categoria }
+
+producto:
+    pattern:  /categorias/{categoria}/{producto_id}
+    defaults:  {_controller: MainBundle:Default:producto }
+
+productoNuevo:
+    pattern:  /producto/nuevo
+    defaults:  {_controller: MainBundle:Producto:productoNuevo }
+
+ofertaNueva:
+    pattern:  /oferta/{producto_id}
+    defaults:  {_controller: MainBundle:Oferta:ofertaNueva }
+
+mis_remates:
+    pattern:  /profile/misremates
+    defaults:  {_controller: MainBundle:Myadmin:misremates}
+
+mis_ofertas_realizadas:
+    pattern:  /profile/misofertas/
+    defaults:  {_controller: MainBundle:Myadmin:misofertasRealizadas}
+
+mis_ofertas:
+    pattern:  /profile/misremates/misofertas/{producto_id}
+    defaults:  {_controller: MainBundle:Myadmin:misofertas}
+
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting/request/request
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile/edit
+
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

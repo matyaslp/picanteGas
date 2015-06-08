@@ -1,0 +1,11 @@
+services:
+    sonata.admin.categoria:
+        class: Bestnid\MainBundle\Admin\CategoriaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Entidad", label: "Categoria" }
+        arguments:
+            - ~
+            - Bestnid\MainBundle\Entity\Categoria
+            - ~
+        calls:
+            - [ setTranslationDomain, [MainBundle]]

@@ -1,0 +1,14 @@
+{% if todo|length>1 %}
+{% for uno in todo%}
+       <li>{{ uno.nombre|e}}  {{uno.apellido }} {{uno.dni}}</li>
+{% endfor %}
+{% endif %}
+
+{% for ciu in ciudades %}
+	<li> {{ ciu.nombre}} </li>
+{% endfor %}
+
+{{ todo[0].nombre}} {{todo[0].apellido}} y {{todo[1].nombre}}!
+
+{{ "now"|date(timezone="Europe/Paris") }}
+

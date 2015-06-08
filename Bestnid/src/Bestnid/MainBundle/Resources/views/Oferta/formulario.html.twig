@@ -1,0 +1,29 @@
+
+
+    {% block body %}
+        <h1>{{ block('title') }}</h1>
+
+        {{ form_start(formulario) }}
+        <div>
+            {{ form_errors(formulario) }}
+
+            <div>
+                {{ form_label(formulario.motivo) }}
+                {{ form_errors(formulario.motivo) }}
+                {{ form_widget(formulario.motivo, { 'attr': { 'class': 'largo' } }) }}
+            </div>
+
+            <div>
+                {{ form_label(formulario.monto, 'Monto') }}
+                {{ form_errors(formulario.monto) }}
+                {{ form_widget(formulario.monto) }}
+            </div>
+            <div>
+                {{ form_widget(formulario.aceptar) }}
+            </div>
+
+
+        </div>
+        {{ form_end(formulario) }}
+    {% endblock %}
+

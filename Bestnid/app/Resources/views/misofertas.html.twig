@@ -1,0 +1,77 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/main/css/bootstrap.min.css') }}"
+          rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src='@MainBundle/Resources/public/js/winner.js' type="text/javascript"></script>
+    <script>
+        function ofertaGanadora() {
+            {
+                window.location = 'http://www.eldia.com';
+            }
+    </script>
+
+{% endblock %}
+
+{% block rowCategoria %}
+    {% include "::menu_perfil.html.twig" %}
+{% endblock %}
+
+
+{% block body  %}
+    <ul class="nav nav-tabs">
+        <li class="active"></li>
+        <li><a href="#">Activas</a></li>
+        <li><a href="#">Inactivas</a></li>
+    </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2"><img src=/uploads/images/{{ producto.foto }} alt="{{ producto.foto }}" class="img" style="min-height:100px;height:100px;"/></div>
+                <div class="col-sm-2">
+                    <div><h3>{{ producto.nombre }}</h3></div>
+                    <h5>Finaliza el {{ producto.fFin |date('d-m-y') }}</h5>
+                <div class="col-sm-8"></div>
+            </div>
+        <table class="table table-nonfluid" style="font-size:small;width: 800px;" >
+            <thead>
+            <tr>
+                <th></th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Motivo</th>
+                <th>Elegir</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for oferta in ofertas %}
+
+            <tr>
+                <td> </td>
+                <td>{{ oferta.fecha |date('Y-m-d') }}</td>
+                <td>{{ oferta.usuario }}</td>
+                <td>{{ oferta.motivo }}</td>
+                <td>{% if producto.activo %}
+
+                        <input type="radio" name="elegida" value="{{ oferta.id }}">
+                        <span class="glyphicon glyphicon-time"></span></p>
+                        {{ form_row(form.ganadora) }}
+
+
+                    {% else %}
+                        <input type="radio" name="elegida" value="{{ oferta.id }}">
+                    {% endif %}
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+            <button id="btn1" name="Elegir" onclick="ofertaGanadora()" ">Ganador</button>
+
+{% endblock %}

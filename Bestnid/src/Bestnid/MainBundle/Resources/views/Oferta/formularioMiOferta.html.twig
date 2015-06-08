@@ -1,0 +1,24 @@
+
+    {% block body %}
+        <h1>{{ block('title') }}</h1>
+
+        {{ form_start(formulario) }}
+        <div>
+            {{ form_errors(formulario) }}
+
+            <div>
+
+                {{ form_widget(formulario.ganadora) }}
+
+
+            </div>
+                <div>
+
+                    {{ form_widget(formulario.aceptar) }}
+                </div>
+
+
+        </div>
+        {{ form_end(formulario) }}
+    {% endblock %}
+

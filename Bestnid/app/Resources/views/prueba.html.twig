@@ -1,0 +1,3 @@
+{% for oferta in ofertas %}
+    <ul> {{ oferta.fecha | date('d-m-Y') }}  {{ oferta.getUsuario() }} </ul>
+{%  endfor  %}

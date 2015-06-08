@@ -1,0 +1,15 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: bestnid
+    database_user: bestnid
+    database_password: 1234
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: es
+    secret: 15f092d8a9889b7d493316575a1a3b65
+    database_path: null
+    bestnid.directorio.imagenes: %kernel.root_dir%/../web/uploads/images/

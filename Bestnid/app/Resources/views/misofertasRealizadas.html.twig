@@ -1,0 +1,67 @@
+{% extends '::frontend.html.twig' %}
+
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/main/css/bootstrap.min.css') }}"
+          rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    function ofertaGanadora(oferta_id ){
+        alert(oferta_id);
+    }
+    </script>
+
+{% endblock %}
+
+{% block rowCategoria %}
+    {% include "::menu_perfil.html.twig" %}
+{% endblock %}
+
+
+{% block body  %}
+    <ul class="nav nav-tabs">
+        <li class="active"></li>
+        <li><a href="{{ path ("mis_remates") }}">Activas</a></li>
+        <li><a href="#">Inactivas</a></li>
+    </ul>
+    <div class="container">
+        <table class="table table-nonfluid" style="font-size:small;width: 800px;" >
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Producto</th>
+                <th>Descripcion</th>
+                <th>Fecha Oferta</th>
+                <th>Fecha Fin</th>
+                <th>Activo</th>
+                <th>Ver Articulo</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for oferta in ofertas %}
+                <tr>
+                    <td><img src=/uploads/images/{{ oferta.producto.foto }} alt="{{ oferta.producto.foto }}" class="img" style="min-height:40px;height:40px;"/> </td>
+                    <td>{{ oferta.producto.usuario }}</td>
+                    <td>{{ oferta.producto.nombre }}</td>
+                    <td>{{ oferta.producto.descripcion }}</td>
+                    <td>{{ oferta.fecha |date('d-m-Y')  }}</td>
+                    <td>{{ oferta.producto.fFin |date('d-m-Y') }}</td>
+                    <td>{% if oferta.activo %}
+                        <span class="glyphicon glyphicon-ok"></span></p>
+                    {% else %}
+                        <span class="glyphicon glyphicon-remove"></span></p>
+                    {% endif %}
+                    <td><p><a href="{{ path('producto', { 'categoria': oferta.producto.categoria, 'producto_id': oferta.producto.id }) }}" class="btn btn-primary">Ver artículo</a></td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock %}
+

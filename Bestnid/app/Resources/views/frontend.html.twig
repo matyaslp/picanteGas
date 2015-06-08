@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/main/css/bootstrap.min.css') }}"
+          rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
+
+{% block rowCategoria %}
+    <div class="col-sm-2" style="background-color:rgba(220, 220, 220, 0.14);">
+        <ul class="nav nav-pills nav-stacked">
+            <div class="panel-heading">Categorias</div>
+            {% for categoria in categorias %}
+                <li><a href="{{ path('categorias', { 'categoria': categoria.id}) }}">{{ categoria.nombre }}</a></li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
+
+
+{% block body %}
+<header>
+		<h4> Ofertas vigentes / {{ categoria }}</a></h4>
+
+    <div class="row">
+    {% for producto in productos %}
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <br>
+                <img src=/uploads/images/{{ producto.foto }} alt="Sample Image" style="min-height:130px;height:130px;">
+                <div class="caption">
+                    <h3>{{ producto.nombre }}</h3>
+                    <p>{{ producto.categoria }}</p>
+                    <p><a href="{{ path('producto', { 'categoria': producto.categoria, 'producto_id': producto.id }) }}" class="btn btn-primary">Ver artículo</a>
+                </div>
+
+            </div>
+            </a>
+        </div>
+    {% endfor %}
+        <img scr="/uploads/images/logo.png alt="Sample Image" style="min-height:40px;height:40px;">
+    </div>
+
+
+
+
+
+
+</header>
+
+<article>
+{% block article %}{% endblock %}
+</article>
+<aside>
+{% block aside %}{% endblock %}
+</aside>
+{% endblock %}

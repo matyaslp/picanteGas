@@ -1,0 +1,75 @@
+{% extends '::frontend.html.twig' %}
+
+{% block stylesheets %}
+    <link href="{{ asset('bundles/main/css/bootstrap.min.css') }}"
+          rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
+
+{% block rowCategoria %}
+    {% include "::menu_perfil.html.twig" %}
+{% endblock %}
+
+
+{% block body  %}
+    <body>
+    {% if not producto.activo %}
+    <div class="alert alert-warning">
+        Upa! Este remate finalizó el {{ producto.fFin |date('Y-m-d') }}
+    </div>
+    {% endif %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12 col-md-3 col-md-offset-1">
+                <h1>{{ producto.nombre }}</h1>
+                <p>
+
+                </p>
+                <p>
+
+                <br>
+                    {{ producto.descripcion }}
+                </p>
+                {% if producto.activo %}
+                <p>
+                    El artículo finaliza el {{ producto.fFin |date('Y-m-d') }}
+                </p>
+
+                <p>
+                    {% if is_granted("ROLE_USER") %}
+                        {{ include('MainBundle:Oferta:formulario.html.twig')}}
+
+                        <br>
+                        <h4>Motivos:</h4>
+                    {% for oferta in producto.ofertas %}
+                        <li class="list-group-item list-group-item-info"> {{ oferta.usuario }}: {{ oferta.motivo }}</li>
+                    {% endfor %}
+
+                    {% endif %}
+                </p>
+                {% endif %}
+            </div>
+
+            <div class="col-xs-12 col-md-3">
+                <figure class="text-center">
+                    <br><br>
+                    <img src=/uploads/images/{{ producto.foto }} alt="{{ producto.foto }}" class="img-thumbnail" style="min-height:230px;height:230px;/>
+                </figure>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                    <br><br>
+
+            </div>
+
+            <div>
+
+
+            </div>
+
+    </div>
+
+    </body>
+{% endblock %}

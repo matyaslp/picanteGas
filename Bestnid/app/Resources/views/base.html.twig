@@ -1,0 +1,64 @@
+<head>
+    {% stylesheets '@bootstrap_css' %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    {{ "now"|date("d/m/Y")}}
+</head>
+<body style="margin: 5px 140px 0px 140px; background-color: #ecf5f3 ">
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href={{ path("pagina_estatica") }}><img src="/uploads/images/logo.png" alt="Sample Image" style="height: 35px; margin-bottom: 8px;padding-bottom: 5px;   margin-right: -15;"></a>
+
+        </div>
+        <div>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ingrese artículo">
+                </div>
+                <button type="submit" class="btn btn-default">Buscar</button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                        {% if is_granted("ROLE_USER") %}
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <li><a href="{{ path("sonata_admin_dashboard") }}"><span class="glyphicon glyphicon-th"></span> Admin</a></li>
+                            {% endif %}
+                            <li><a href="{{ path("productoNuevo") }}"><span class="glyphicon glyphicon-upload"></span> Publicar</a></li>
+                            <li><a href="{{ path ("fos_user_profile_edit") }}"><span class="glyphicon glyphicon-user"></span> Hola  {{ app.user.username }}! </a></li>
+                            <li><a href="{{ path("fos_user_security_logout") }}"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
+                        {% elseif is_granted("IS_AUTHENTICATED_ANONYMOUSLY")%}
+                            <li><a href="{{ path("fos_user_registration_register") }}"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+                            <li><a href="{{ path("fos_user_security_login") }}"><span class="glyphicon glyphicon-log-in"></span> Ingresar</a></li>
+                        {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+        {% block rowCategoria %}{% endblock %}
+
+        <div class="col-sm-10" style="background-color:rgba(236, 255, 242, 0);">
+            {% block body %} {% endblock %}
+
+        </div>
+    </div>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% javascripts '@jquery' '@bootstrap_js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+
+
+
+

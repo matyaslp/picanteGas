@@ -1,0 +1,8 @@
+parameters:
+#    main.example.class: Bestnid\MainBundle\Example
+
+services:
+    bestnid.registration.form.type:
+        class: Bestnid\MainBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: bestnid_user_registration }

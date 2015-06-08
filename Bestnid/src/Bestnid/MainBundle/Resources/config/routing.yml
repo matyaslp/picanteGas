@@ -1,0 +1,7 @@
+main_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: MainBundle:Default:index }
+
+pagina_estatica:
+    pattern:  /
+    defaults:  {_controller: MainBundle:Default:estatica}

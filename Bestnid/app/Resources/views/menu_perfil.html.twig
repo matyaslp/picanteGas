@@ -1,0 +1,15 @@
+
+
+{% block javascripts %}{% endblock %}
+
+{% block rowCategoria %}
+    <div class="col-sm-2" style="background-color:rgba(220, 220, 220, 0.14);">
+        <ul class="nav nav-pills nav-stacked">
+            <li class=""><a href="{{ path ("fos_user_profile_edit") }}"> Mis datos</a></li>
+            <li class=""><a href="{{ path ("mis_remates") }}">Mis remates</a></li>
+            <li class=""><a href="{{ path ("mis_ofertas_realizadas") }}">Mis ofertas</a></li>
+            <li class=""><a href="{{ path('fos_user_change_password') }}"> Cambiar contraseña</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
